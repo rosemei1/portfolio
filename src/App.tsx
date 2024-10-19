@@ -1,8 +1,15 @@
 import { useState, useEffect } from 'react'
-import { ArrowUpRight, Instagram, Twitter, Linkedin } from 'lucide-react'
+
+import { Instagram, CircleUser, Linkedin, Github, Flower, FileUser} from 'lucide-react'
+import { SiTensorflow, SiPython, SiKeras, SiPandas, SiNumpy, SiMicrosoftsqlserver, SiAndroidstudio, SiFlutter, SiGit} from 'react-icons/si'
+
 import { motion } from 'framer-motion'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+
 import pan from "./assets/images/pan.jpg"
+import leaflens from "./assets/images/leaflens.jpg"
+import eling from "./assets/images/eling.jpg"
+import pmi from "./assets/images/pmi.jpg"
 
 export default function Portfolio() {
   const [mounted, setMounted] = useState(false)
@@ -13,24 +20,30 @@ export default function Portfolio() {
 
   const projects = [
     {
-      name: 'Musea',
-      description: 'An AI-driven virtual museum experience that adapts to user preferences.',
-      images: ['/placeholder.svg?height=300&width=400', '/placeholder.svg?height=300&width=400']
+      name: 'LeafLens',
+      description: 'Your AI-powered guide to unlocking the secrets of Indonesian herbal plants.',
+      images: [leaflens]
     },
     {
-      name: 'Elara',
-      description: 'A smart home system that learns and anticipates resident needs.',
-      images: ['/placeholder.svg?height=300&width=400']
+      name: 'E-Ling',
+      description: 'Edukasi Lingkungan, an environmental education app focused on waste management. It covers waste types, management methods, and the impact on the environment and health, aiming to raise public awareness of responsible waste disposal.',
+      images: [eling]
     },
     {
-      name: 'Verve',
-      description: 'An AI-powered digital art creation tool for aspiring artists.',
-      images: ['/placeholder.svg?height=300&width=400']
+      name: 'Panasonic Manufacturing Indonesia - Internship',
+      description: 'Help air conditioner business unit making dashboard to monitor and create production planning',
+      images: [pmi]
     },
     {
-      name: 'Zephyr',
-      description: 'An environmentally conscious AI that optimizes urban planning.',
-      images: ['/placeholder.svg?height=300&width=400']
+      name: 'Publication',
+      description: (
+        <>
+          <a href="https://ieeexplore.ieee.org/document/10665862" target="_blank">
+            Convolutional Neural Network Implementation with MobileNetV2 Architecture for Indonesian Herbal Plants Classification in Mobile App
+          </a>.
+        </>
+      ),
+      images: []
     }
   ]
 
@@ -50,7 +63,7 @@ export default function Portfolio() {
           style={{color:'#e0d7c7'}}
           className="text-2xl font-bold"
         >
-          IRFAN HANIF KHOIRU RIJAL
+          IRFAN
         </motion.h1>
         <nav className="space-x-4">
           <motion.a 
@@ -100,7 +113,7 @@ export default function Portfolio() {
             <h2 className="text-4xl font-bold mb-2">and Analytics</h2>
             <h2 className="text-4xl font-light">for Real-World Impact</h2>
           </div>
-          <div className="w-24 h-24 border-2 rounded-full mt-4" style={{ borderColor: '#F1E2AD' }}></div>
+          <Flower className="w-24 h-24 mt-4" strokeWidth={1}/>
         </motion.section>
 
         <motion.section 
@@ -127,7 +140,7 @@ export default function Portfolio() {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.3 }}
         >
-          <Accordion type="single" collapsible defaultValue="Musea" className="h-full overflow-y-auto">
+          <Accordion type="single" collapsible defaultValue="LeafLens" className="h-full overflow-y-auto">
             {projects.map((project) => (
               <AccordionItem value={project.name} key={project.name}>
                 <AccordionTrigger>{project.name}</AccordionTrigger>
@@ -159,26 +172,37 @@ export default function Portfolio() {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.3 }}
         >
-          <div className="w-8 h-8 border-2 border-pink-300 rounded-full border-t-transparent mb-4" style={{ borderColor: '#F1E2AD' }}></div>
+          <CircleUser className="w-8 h-8 mb-4" strokeWidth={1}></CircleUser>
           <p className="text-sm">
-            AI and data science enthusiast based in Surabaya, focused on leveraging technology for innovative mobile development solutions. I blend technical skills with creativity to make technology impactful and accessible.
+            Irfan Hanif Khoiru Rijal, AI and data science enthusiast based in Surabaya, focused on leveraging technology for innovative mobile development solutions. I blend technical skills with creativity to make technology impactful and accessible.
           </p>
         </motion.section>
 
         <motion.section 
-          id="contact"
+          id="skillset"
           style={{ backgroundColor: '#211C1D'}}
-          className="p-6 rounded-lg flex justify-between items-end"
+          className="p-6 rounded-lg relative flex flex-col items-start"
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.3 }}
         >
-          <div>
-            <p className="mb-4">Have some questions?</p>
-            <h2 className="text-4xl font-bold">Contact me</h2>
+          <p className="font-bold mb-6">My Expertise</p>
+          
+          {/* Icons container with wrapping */}
+          <div className="flex flex-wrap space-x-6 mb-4">
+            <SiTensorflow className="w-9 h-9 mb-4" />
+            <SiPython className="w-9 h-9 mb-4" />
+            <SiKeras className="w-9 h-9 mb-4" />
+            <SiNumpy className="w-9 h-9 mb-4" />
+            <SiPandas className="w-9 h-9 mb-4" />
+            <SiMicrosoftsqlserver className="w-9 h-9 mb-4" />
+            <SiAndroidstudio className="w-9 h-9 mb-4" />
+            <SiFlutter className="w-9 h-9 mb-4" />
+            <SiGit className="w-9 h-9 mb-4" />
           </div>
-          <ArrowUpRight className="w-8 h-8" />
         </motion.section>
+
+
       </main>
       <motion.footer 
           className="p-4 rounded-lg flex justify-center items-center mt-4"
@@ -188,9 +212,10 @@ export default function Portfolio() {
           transition={{ delay: 0.7, duration: 0.3 }}
         >
           <div className="flex space-x-4">
-            <a href="#" className="hover:text-[#f1e2ad]"><Instagram className="w-5 h-5" /></a>
-            <a href="#" className="hover:text-[#f1e2ad]"><Twitter className="w-5 h-5" /></a>
-            <a href="#" className="hover:text-[#f1e2ad]"><Linkedin className="w-5 h-5" /></a>
+            <a href="https://www.instagram.com/ivy_nf/" className="hover:text-[#f1e2ad]"><Instagram className="w-5 h-5" /></a>
+            <a href="https://github.com/rosemei1" className="hover:text-[#f1e2ad]"><Github className="w-5 h-5" /></a>
+            <a href="https://linkedin.com/in/irfanhnf/" className="hover:text-[#f1e2ad]"><Linkedin className="w-5 h-5" /></a>
+            <a href="https://drive.google.com/file/d/1UzlTjx44HFJtKx7dJoWJrufhZSTSBiv8/view?usp=sharing" className="hover:text-[#f1e2ad]"><FileUser className="w-5 h-5" /></a>
           </div>
         </motion.footer>
     </motion.div>
