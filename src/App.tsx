@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { ArrowUpRight, Instagram, Twitter, Linkedin, ChevronDown } from 'lucide-react'
+import { ArrowUpRight, Instagram, Twitter, Linkedin } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
@@ -47,7 +47,7 @@ export default function Portfolio() {
           transition={{ delay: 0.2, type: 'spring', stiffness: 120 }}
           className="text-2xl font-bold"
         >
-          JULIA HUANG
+          IRFAN HANIF KHOIRU RIJAL
         </motion.h1>
         <nav className="space-x-4">
           <motion.a 
@@ -103,8 +103,8 @@ export default function Portfolio() {
           transition={{ delay: 0.3, duration: 0.3 }}
         >
           <img
-            src="/placeholder.svg?height=400&width=400"
-            alt="Julia Huang"
+            src="/pan.jpg"
+            alt="pan"
             width={400}
             height={400}
             className="w-full h-full object-cover"
@@ -119,7 +119,7 @@ export default function Portfolio() {
           transition={{ delay: 0.4, duration: 0.3 }}
         >
           <Accordion type="single" collapsible defaultValue="Musea" className="h-full overflow-y-auto">
-            {projects.map((project, index) => (
+            {projects.map((project) => (
               <AccordionItem value={project.name} key={project.name}>
                 <AccordionTrigger>{project.name}</AccordionTrigger>
                 <AccordionContent>
