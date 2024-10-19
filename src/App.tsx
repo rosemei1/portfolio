@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { ArrowUpRight, Instagram, Twitter, Linkedin } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import pan from "./assets/images/pan.jpg"
 
 export default function Portfolio() {
   const [mounted, setMounted] = useState(false)
@@ -103,7 +104,7 @@ export default function Portfolio() {
           transition={{ delay: 0.3, duration: 0.3 }}
         >
           <img
-            src="/pan.jpg"
+            src={pan}
             alt="pan"
             width={400}
             height={400}
