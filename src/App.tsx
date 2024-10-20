@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 
-import { Instagram, CircleUser, Linkedin, Github, Flower, FileUser} from 'lucide-react'
+import { Instagram, CircleUser, Linkedin, Github, Flower, FileUser, Menu, X} from 'lucide-react'
 import { SiTensorflow, SiPython, SiKeras, SiPandas, SiNumpy, SiMicrosoftsqlserver, SiAndroidstudio, SiFlutter, SiGit} from 'react-icons/si'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import {Tooltip} from 'react-tooltip';
 
 import pan from "./assets/images/pan.jpg"
 import leaflens from "./assets/images/leaflens.jpg"
@@ -13,6 +14,11 @@ import pmi from "./assets/images/pmi.jpg"
 
 export default function Portfolio() {
   const [mounted, setMounted] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen)
+  }
 
   useEffect(() => {
     setMounted(true)
@@ -38,9 +44,15 @@ export default function Portfolio() {
       name: 'Publication',
       description: (
         <>
-          <a href="https://ieeexplore.ieee.org/document/10665862" target="_blank">
+          <a 
+            href="https://ieeexplore.ieee.org/document/10665862" 
+            target="_blank" 
+            style={{textDecoration: 'none', cursor: 'pointer' }}
+            onMouseEnter={(e) => e.currentTarget.style.textDecoration = 'underline'}
+            onMouseLeave={(e) => e.currentTarget.style.textDecoration = 'none'}
+          >
             Convolutional Neural Network Implementation with MobileNetV2 Architecture for Indonesian Herbal Plants Classification in Mobile App
-          </a>.
+          </a>
         </>
       ),
       images: []
@@ -55,27 +67,24 @@ export default function Portfolio() {
       style={{ backgroundColor: '#56453e', color:'#e0d7c7'}}
       className="min-h-screen p-4 md:p-8"
     >
-      <header className="flex justify-between items-center mb-4 p-6 rounded-lg" style={{backgroundColor: '#211c1d'}}>
-        <motion.h1 
+      <header className="flex justify-between items-center mb-4 p-4 rounded-lg" style={{backgroundColor: '#211c1d'}}>
+        <motion.h2 
           initial={{ x: -50 }} 
           animate={{ x: 0 }} 
           transition={{ delay: 0.2, type: 'spring', stiffness: 120 }}
           style={{color:'#e0d7c7'}}
-          className="text-2xl font-bold"
+          className="text-2xl font-bold ms-4"
         >
-          IRFAN
-        </motion.h1>
-        <nav className="space-x-4">
-          <motion.a 
-            href="#projects"
-            style={{color:'#e0d7c7'}}
-            className="hover:underline"
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            PROJECTS
-          </motion.a>
+          Irfan | My Portfolio
+        </motion.h2>
+
+        <div className="lg:hidden">
+          <button onClick={toggleMenu}>
+            {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+          </button>
+        </div>
+
+        <nav className="hidden lg:flex space-x-12 me-4">
           <motion.a 
             href="#about" 
             style={{color:'#e0d7c7'}}
@@ -84,19 +93,63 @@ export default function Portfolio() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            ABOUT
+            About
           </motion.a>
           <motion.a 
-            href="#contact" 
+            href="#projects"
+            style={{color:'#e0d7c7'}}
+            className="hover:underline"
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            Experience
+          </motion.a>
+          <motion.a 
+            href="#skillset" 
             style={{color:'#e0d7c7'}}
             className="hover:underline"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            CONTACT
+            Tech Stack
           </motion.a>
         </nav>
+        <AnimatePresence>
+          {isOpen && (
+            <motion.nav
+              className="absolute top-16 right-0 bg-[#211c1d] text-[#e0d7c7] p-6 rounded-lg space-y-4 lg:hidden z-50 mt-4 me-4 drop-shadow-lg"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              style={{ zIndex: 50 }}
+            >
+              <a
+                href="#about"
+                className="block hover:underline"
+                onClick={toggleMenu}
+              >
+                ABOUT
+              </a>
+              <a
+                href="#projects"
+                className="block hover:underline"
+                onClick={toggleMenu}
+              >
+                PROJECTS
+              </a>
+              <a
+                href="#skillset"
+                className="block hover:underline"
+                onClick={toggleMenu}
+              >
+                TECH STACK
+              </a>
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </header>
 
       <main className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -186,19 +239,26 @@ export default function Portfolio() {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.3 }}
         >
-          <p className="font-bold mb-6">My Expertise</p>
-          
-          {/* Icons container with wrapping */}
+          <p className="font-bold mb-6">Tech Stack</p>
           <div className="flex flex-wrap space-x-6 mb-4">
-            <SiTensorflow className="w-9 h-9 mb-4" />
-            <SiPython className="w-9 h-9 mb-4" />
-            <SiKeras className="w-9 h-9 mb-4" />
-            <SiNumpy className="w-9 h-9 mb-4" />
-            <SiPandas className="w-9 h-9 mb-4" />
-            <SiMicrosoftsqlserver className="w-9 h-9 mb-4" />
-            <SiAndroidstudio className="w-9 h-9 mb-4" />
-            <SiFlutter className="w-9 h-9 mb-4" />
-            <SiGit className="w-9 h-9 mb-4" />
+            <SiTensorflow className="w-9 h-9 mb-4" data-tooltip-content="TensorFlow" data-tooltip-id="techTooltip" />
+            <SiPython className="w-9 h-9 mb-4" data-tooltip-content="Python" data-tooltip-id="techTooltip" />
+            <SiKeras className="w-9 h-9 mb-4" data-tooltip-content="Keras" data-tooltip-id="techTooltip" />
+            <SiNumpy className="w-9 h-9 mb-4" data-tooltip-content="NumPy" data-tooltip-id="techTooltip" />
+            <SiPandas className="w-9 h-9 mb-4" data-tooltip-content="Pandas" data-tooltip-id="techTooltip" />
+            <SiMicrosoftsqlserver className="w-9 h-9 mb-4" data-tooltip-content="Microsoft SQL Server" data-tooltip-id="techTooltip" />
+            <SiAndroidstudio className="w-9 h-9 mb-4" data-tooltip-content="Android Studio" data-tooltip-id="techTooltip" />
+            <SiFlutter className="w-9 h-9 mb-4" data-tooltip-content="Flutter" data-tooltip-id="techTooltip" />
+            <SiGit className="w-9 h-9 mb-4" data-tooltip-content="Git" data-tooltip-id="techTooltip" />
+
+            <Tooltip
+              id="techTooltip"
+              place="top"
+              style={{
+                backgroundColor:"#e0d7c7",
+                color:"#211C1D", fontWeight:"bold"}}
+              delayShow={200}
+            />
           </div>
         </motion.section>
 
