@@ -26,8 +26,40 @@ export default function Portfolio() {
 
   const projects = [
     {
+      name: 'Teeth Abnormality Detection - On Going',
+      description: 'AI-powered web application designed to assist users in detecting and pinpointing dental abnormalities with precision and ease. Built with cutting-edge technology to enhance dental diagnostics and improve user accessibility to oral health insights.',
+      images: []
+    },
+    {
+      name: 'MyPera',
+      description: (
+        <>
+          <a 
+            href="https://mypera.my.canva.site" 
+            target="_blank" 
+            style={{textDecoration: 'none', cursor: 'pointer' }}
+            onMouseEnter={(e) => e.currentTarget.style.textDecoration = 'underline'}
+            onMouseLeave={(e) => e.currentTarget.style.textDecoration = 'none'}
+          >
+            Personal assistant mobile app designed to help users maintain a healthy and productive lifestyle.
+          </a>
+        </>
+      ),
+      images: []
+    },
+    {
       name: 'LeafLens',
-      description: 'Your AI-powered guide to unlocking the secrets of Indonesian herbal plants.',
+      description: <>
+      <a 
+        href="https://github.com/rosemei1/LeafLens" 
+        target="_blank" 
+        style={{textDecoration: 'none', cursor: 'pointer' }}
+        onMouseEnter={(e) => e.currentTarget.style.textDecoration = 'underline'}
+        onMouseLeave={(e) => e.currentTarget.style.textDecoration = 'none'}
+      >
+        Your AI-powered guide to unlocking the secrets of Indonesian herbal plants.
+      </a>
+    </>,
       images: [leaflens]
     },
     {
@@ -193,7 +225,7 @@ export default function Portfolio() {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.3 }}
         >
-          <Accordion type="single" collapsible defaultValue="LeafLens" className="h-full overflow-y-auto">
+          <Accordion type="single" collapsible defaultValue="Teeth Abnormality Detection - On Going" className="h-full overflow-y-auto">
             {projects.map((project) => (
               <AccordionItem value={project.name} key={project.name}>
                 <AccordionTrigger>{project.name}</AccordionTrigger>
